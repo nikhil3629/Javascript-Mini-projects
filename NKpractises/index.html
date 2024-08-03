@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NK Practises</title>
+        <style>
+            body{
+                background-color:rgb(139, 139, 217);
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                text-align: center;
+            }
+            form{
+                background-color:rgb(247, 169, 24);
+                max-width: 80%;
+                margin: 35px auto;
+                padding: 30px 20px;
+                box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+            }
+
+            .fc{
+                text-align: left;
+            }
+
+            .fc label{
+                display:block;
+                margin-bottom: 1px;
+            }
+
+            .fc input,
+            .fc select
+            .fc textarea{
+                border:1px solid;
+                border-radius: 2px;
+                font-family: 'Courier New', Courier, monospace;
+                padding: 10px;
+                display:block;
+                width:90%
+
+            }
+
+            .fc input[type="radio"],
+            .fc input [type="checkbox"]{
+                display: inline-block;
+                width:auto;
+            }
+
+            button{
+                background-color:rgb(153, 153, 227);
+                border:1px;
+                border-radius: 2px;
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 25px;
+                display:block;
+                width:100%;
+            
+            }
+        </style>
+    </head>
+        <body>
+            <center><h1 style="font-size: 50px;">Survey Form</h1></center>
+            <form id="form">
+
+                <div class="fc">
+                    <label for="name" id="label-name">Name:</label><br>
+                    <input type="text" id="name" placeholder="Enter your Name" required><br><br>
+                </div>
+                
+                <div class="fc">
+                    <label for="email" id="label-email">Email:</label><br>
+                    <input type="email" id="email" placeholder="Enter your Email"  required><br><br>
+                </div>
+                
+                <div class="fc">
+                    <label for="age" id="label-age">Age:</label><br>
+                    <input type="number" id="age" placeholder="Enter your Age"><br><br>
+                </div>
+                
+                <div class="fc">
+                    <label for="role" id="label-role">Which option describes you?</label><br>
+                    <select name="role" id="role" style="width:90%; height:39px">
+                        <option value="Student">Student</option>
+                        <option value="Intern">Intern</option>
+                        <option value="Professional">Professional</option>
+                        <option value="Other">Other</option>
+                    </select><br><br>
+                </div>
+                
+                <div class="fc">
+                    <label>Would you recommend NK Practices to friend?</label><br>
+                    <input type="radio" name="s" value="y">Yes<br>
+                    <input type="radio" name="s" value="N">No<br>
+                    <input type="radio" name="s" value="M">May be<br><br>
+                </div>
+                
+                <div class="fc">
+                    <label>Languages and Frameworks Known (Check all that apply):</label><br>
+                    <input type="checkbox" name="L and F">C<br>
+                    <input type="checkbox" name="L and F">C++<br>
+                    <input type="checkbox" name="L and F">Java<br>
+                    <input type="checkbox" name="L and F">Python<br>
+                    <input type="checkbox" name="L and F">JavaScript<br>
+                    <input type="checkbox" name="L and F">React<br>
+                    <input type="checkbox" name="L and F">Angular<br>
+                    <input type="checkbox" name="L and F">Django<br>
+                    <input type="checkbox" name="L and F">Spring<br><br>
+                </div>
+               
+                <div class="fc">
+                    <label>Any comments or suggestions:</label><br>
+                    <textarea name="comment" id="comment" placeholder="Enter Your Comment" style="width: 92%; height:150px"></textarea><br><br>
+                </div>
+                
+                <div class="fc">
+                <center><button type="submit" value="submit">Submit</button></center>
+                </div>
+                
+                
+
+            </form>
+        </body>
+    
+</html>
