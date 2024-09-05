@@ -1,0 +1,309 @@
+<html>
+    <head>
+        <title>Contact card</title>
+    </head>
+
+    <style>
+        body{
+            background-color:#012641 ;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        #h{
+                
+                border:1px solid;
+                display:inline;
+                padding:10px;
+                border-radius: 30%;
+                background-color: #FFF3DF;
+                font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        button{
+            border:0px;
+            border-radius:20px;
+            padding:8px 20px 8px 20px;
+            background-color: orange;
+            color:black;
+        }
+
+        #card 
+        {
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: 30px ;
+                margin-left: 18%;
+                margin-right: 18%;
+        }
+
+        #card div{
+                width:260px;
+                height:260px;
+                background-color:#F4FBFD;
+                list-style: none;
+                margin:14.4px;
+                border:5px solid;
+                border-color: orange;
+                border-radius: 10%;
+                padding:10px
+                
+            }
+
+        #card h1{
+                color:#0c2924;
+                font-size: 15px;
+                
+            }
+
+        label{
+            color:white;
+            
+        }
+
+        #card img{
+                margin-top: 20px;
+                margin-bottom: 15px;
+                width:20px;
+                height:40px;
+                border-radius: 50%;
+            }
+
+        span{
+            color:#23687D;
+        }
+    </style>
+    <body>
+
+        <center>
+        <p></p><br><br>
+        <h1 id="h">Add Contact Cards</h1><br><br><br>
+        <table  cellpadding="5px" cellspacing="5px">   
+                <tr>
+                    <td><label for="name"><b>Name :</b></label></td>
+                    <td><input type="text" id="name" name="Name" placeholder="Enter Your Name"></td>
+                </tr>
+
+                <tr>
+                    <td> <label for="num"><b>Number :</b></label></td>
+                    <td><input type="text" id="num" name="Number" placeholder="Enter Your Number"></td>
+                </tr>
+                    
+                <tr>
+                    <td><label for="em"><b>Email :</b></label></td>
+                    <td><input type="email" id="em"  name="Email" placeholder="Enter Your Email ID"></td>
+                </tr>
+
+                <tr>
+                    <td><label for="img"><b>Image :</b></label></td>
+                    <td><input type="text" id="img" name="Image" placeholder="Enter Image URL"></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><button  onclick="addContacts()"  id="add"><b>Add Contacts</b></button><button  onclick="update()"  id="upd"><b>Update Contact</b></button></td>
+                    
+                </tr>
+
+                <tr>
+                   
+                    <td colspan="2"><button onclick="sortAZ()"><b>Sort AZ</b></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="s1" onkeyup="filt(event)" placeholder="search contacts">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="sortZA()"><b>Sort ZA</b></button></td>
+                    
+                </tr>
+
+        </table>
+        </center>
+                    <div id="card">
+                             
+                    </div>
+
+
+                   
+                     
+                    <script>
+                       var u= document.getElementById("h");
+                       u.style.color= '#17282E';
+                       var addBtn = document.getElementById("add")
+                       var updBtn = document.getElementById("upd")
+                       var contactDetails = [];
+                       var contacts;
+                       var personName = document.getElementById('name')
+                       var personNumber = document.getElementById('num')
+                       var personEmail = document.getElementById('em')
+                       var personImg  = document.getElementById('img')
+                       var currentIndex; 
+
+                        updBtn.style.display = "none"
+
+                       function addContacts()
+                       {
+                                
+                                contacts = {
+                                             'Name' : personName.value,
+                                             'Number' : personNumber.value,
+                                             'Email' : personEmail.value,
+                                             'Image' : personImg.value 
+                                           }
+
+                                           contactDetails.push(contacts)
+
+                                
+                                    console.log(contactDetails)
+                            genUI(contactDetails);
+                       }
+
+
+                        function genUI(x)
+                        {
+
+                            document.getElementById("card").innerHTML = ""
+                              x.forEach(function (el, i)
+                              {
+                                   var newcard =  document.createElement("div");
+                                                //    newcard.style.border = "2px solid black";
+                                                //    newcard.style.width = "400px";
+                                                //    newcard.style.height = "250px";
+                                                //    newcard.style.padding = "20px"
+                                                //    newcard.style.margin = "20px"
+
+                                            var im=document.createElement("img")
+                                            im.src= el.Image
+                                            im.style.marginTop= "20px";
+                                            im.style.marginBottom= "15px";
+                                            im.style.marginLeft = "60px"
+                                            im.style.width= "120px";
+                                            im.style.height= "100px";
+                                            im.style.borderRadius= "50%";
+                            
+                                            newcard.appendChild(im)
+                                            newcard.innerHTML = newcard.innerHTML + "<h1>" + "Name : " + "<span> "+ el.Name +" </span>"+"</h1>"
+                                            newcard.innerHTML = newcard.innerHTML + "<h1>" +  "Number : " + "<span>"+ el.Number+ "</span>"+"<h1>"
+                                            newcard.innerHTML = newcard.innerHTML + "<h1>" + "Email : " +"<span>"+ el.Email+"</span>"+"<h1>"
+
+                                        var btn =  document.createElement("button")
+                                                   btn.innerHTML = "Delete"
+                                                   btn.style.marginLeft="20px"
+                                                   
+                                                   btn.onclick = function()   
+                                                             {
+                                                                x.splice(i,1);
+                                                                genUI(contactDetails)
+                                                             }
+                                                   
+                                            newcard.appendChild(btn)
+
+                                        var upd = document.createElement("button")
+                                                   upd.src="Edit"
+                                                   upd.innerHTML = "Edit"
+                                                   upd.style.marginLeft = "60px"
+
+                                                   upd.onclick = function()
+                                                                { 
+                                                                     currentIndex = i;
+                                                                     personName.value = el.Name
+                                                                     personNumber.value = el.Number 
+                                                                     personEmail.value = el.Email 
+                                                                    personImg.src= el.Image
+                                                                     console.log(i);
+
+                                                                     updBtn.style.display = "inline-block"
+                                                                     addBtn.style.display = "none"
+                                                                }
+
+                            
+                                                   newcard.appendChild(upd);
+
+
+                                            
+                                        
+                                        document.getElementById("card").appendChild(newcard);
+        
+                              }
+                            )
+
+                        }
+
+
+                        function sortAZ()
+                        {
+                                contactDetails.sort( function(a,b)
+                                {
+                                       
+                                    if(a.Name > b.Name)
+                                          {
+                                               return 1;
+                                          }
+                                          else 
+                                          {
+                                                return -1;
+                                          }
+                                }     
+                                  );
+                                genUI(contactDetails);
+                        }
+
+                        function sortZA()
+                        {
+                                 contactDetails.sort(function(a,b)
+                                       {
+                                           
+                                             if(a.Name > b.Name)
+                                             {
+                                                 return -1
+                                             }
+                                             else 
+                                             {
+                                                return 1
+                                             }
+
+                                       }
+                                  
+                                )
+
+                                genUI(contactDetails);
+                        }
+                         
+                    
+                        
+                            function filt(e)
+                            {
+                                  var filtArr =  contactDetails.filter(function(st)
+                                                   {
+                                                       if(st.Name.toLowerCase().startsWith(e.target.value.toLowerCase()) )
+                                                         {
+                                                              return true
+                                                         }
+                                                         else 
+                                                         {
+                                                                return false 
+                                                         }
+
+                                                console.log(filtArr)
+                                               }
+                                       )
+
+                                       genUI(filtArr);
+                            }
+
+
+                            function update()
+                            {
+                                 var updatedPerson = 
+                                 {
+                                        'Name' : personName.value,
+                                        'Number' : personNumber.value,
+                                        'Email'  : personEmail.value,
+                                        'Image'   : personImg.src
+                                 }
+
+                                 contactDetails[currentIndex] = updatedPerson
+                                 genUI(contactDetails)
+                            }
+ 
+
+
+                             
+                        
+                     </script>
+
+    </body>
+</html>
